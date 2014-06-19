@@ -10,27 +10,30 @@ module.exports = function(grunt) {
         			style: 'compressed'
         		},
         		files: {
-        			'stylesheets/screen.css' : 'sass/screen.scss'
+        			'app/stylesheets/screen.css' : 'app/sass/screen.scss'
         		}
         	}
         },
         watch: {
             all: {
-                files: ['sass/*.scss'],
+                files: ['app/sass/*.scss'],
                 tasks: ['sass'],
                 options: {
-                    spawn: false,
-                    livereload: true
+                    spawn: false
                 }
             }
         },
-        connect: {
-            server: {
-              options: {
-                port: 9001,
-                hostname: 'localhost',
-                keepalive: true
-              }
+        browserSync: {
+            dev: {
+                bsFiles: {
+                    src : 'app/stylesheets/screen.css'
+                },
+                options: {
+                    server: {
+                        baseDir: 'app'
+                    },
+                    watchTask: true
+                }
             }
         }
 
@@ -39,9 +42,9 @@ module.exports = function(grunt) {
     // 3. Where we tell Grunt we plan to use this plug-in.
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-browser-sync');
 
     // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
-    grunt.registerTask('default', ['connect','watch']);
+    grunt.registerTask('default', ['browserSync','watch']);
 
 };
