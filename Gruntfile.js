@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-        sass: {
+/*        sass: {
         	dist: {
         		options: {
         			style: 'compressed'
@@ -13,11 +13,20 @@ module.exports = function(grunt) {
         			'app/stylesheets/screen.css' : 'app/sass/screen.scss'
         		}
         	}
+        },*/
+        compass: {
+            dist: {
+                options: {
+                    sassDir: 'app/sass',
+                    cssDir: 'app/stylesheets',
+                    outputStyle: 'compressed'
+                }
+            }
         },
         watch: {
             all: {
                 files: ['app/sass/*.scss'],
-                tasks: ['sass'],
+                tasks: ['compass'],
                 options: {
                     spawn: false
                 }
@@ -43,7 +52,8 @@ module.exports = function(grunt) {
     });
 
     // 3. Where we tell Grunt we plan to use this plug-in.
-    grunt.loadNpmTasks('grunt-contrib-sass');
+    //grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-browser-sync');
 
