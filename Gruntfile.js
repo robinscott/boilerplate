@@ -4,28 +4,18 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-/*        sass: {
-        	dist: {
-        		options: {
-        			style: 'compressed'
-        		},
-        		files: {
-        			'app/stylesheets/screen.css' : 'app/sass/screen.scss'
-        		}
-        	}
-        },*/
         compass: {
             dist: {
                 options: {
                     sassDir: 'app/sass',
                     cssDir: 'app/stylesheets',
-                    outputStyle: 'compressed'
+                    outputStyle: 'expanded'
                 }
             }
         },
         watch: {
             all: {
-                files: ['app/sass/*.scss'],
+                files: ['app/sass/**/*.scss'],
                 tasks: ['compass'],
                 options: {
                     spawn: false
