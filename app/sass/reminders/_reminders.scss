@@ -1,0 +1,44 @@
+#reminders-page {
+	@include clearfix;
+	padding-top: 40px;
+	header {
+		@include clearfix;
+		h2 {
+			@include column(9);
+			font-family: $font-sun3;
+		}
+		button {
+			display: block;
+			background-color: white;
+			border: none;
+			color: white;
+			@include font-size(medium);
+			font-family: $font-sun7;
+			background-image: linear-gradient(#31AE20, #006300);
+			padding: 10px 0;
+			@include column(3);
+		}
+	}
+	.reminder-overdue {
+		margin: 30px 0;
+		@include clearfix;
+		background-color: #5575b9;
+		h6 {
+			@include column(12);
+			padding: 20px 0;
+		}
+		.main-text {
+			@include font-size(large);
+			font-family: $font-sun3;
+			@include column(6);
+			padding: 20px 0;
+		}
+		.details {
+			@include column(6);
+			dt, dd {
+				width: 50%;
+				float: left;
+			}
+		}
+	}
+}

@@ -1,0 +1,113 @@
+//*****************************************************************
+// base.scss
+// general styles that apply to all pages, and to base elements
+//*****************************************************************
+
+*, *:before, *:after {
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box;
+ }
+
+// Remove text-shadow in selection highlight: h5bp.com/i
+// These selection rule sets have to be separate.
+// Customize the background color to match your design.
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+// Compass sets up the vertical rythym baseline
+@include establish-baseline;
+
+html {
+  font-kerning: normal; // Set the default for kerning
+  font-synthesis: none; // Don't allow the font to create sythetic bold/italic
+  text-rendering: optimizeLegibility; // Improve kerning pairs. Caution: Webkit gets funny with this sometimes
+  -webkit-font-smoothing: antialiased; // Improve (or in some cases screw with) safari's legibility somewhat
+
+  // Stop iPhone/iPad from scaling text
+  @media screen and (max-width: 769px) {
+    -webkit-text-size-adjust: none;
+  }
+  
+  @if ($show-baseline-grid) {
+    @include show-baseline-grid;
+  }
+  
+}
+
+body { 
+    font-family: $font-family-default;
+    color: $default-font-color;
+}
+
+input,
+button { -webkit-font-smoothing: antialiased; }
+
+// A better looking default horizontal rule
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+// Remove the gap between images, videos, audio and canvas and the bottom of their containers: h5bp.com/i/440
+audio,
+canvas,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+ul {
+  list-style-position: inside;
+  list-style-type: disc;
+}
+
+ol {
+  list-style-position: inside;
+  list-style-type: decimal;
+}
+
+li { line-height: auto; }
+
+blockquote {
+  padding-left: 2em;
+  padding-right: 2em;
+  line-height: normal;
+  @include margin-leader(3, 20px); // 3 lines above
+  @include margin-trailer(3, 20px); // 3 lines below
+  
+  p {
+    @include adjust-font-size-to(20px);
+    font-style: italic;
+  }
+}
+
+//Layout
+//----------------------------------------------------
+
+// Center sets a max width
+.center, %center {
+  margin: 0 auto;
+  max-width: 960px;
+	@include clearfix();
+  /*@include ie-lte(8) {
+    width: 1020px;
+  }*/
+}
+
+// Utility class to make the current row full width
+.full-width, %full-width {
+  @include column(12);
+}

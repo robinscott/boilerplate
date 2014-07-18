@@ -1,0 +1,61 @@
+body {
+  background: $colour-medium-blue;
+  z-index: 0;
+  .title h1 {
+	font-family: $font-sun3;
+  }
+}
+
+#account-page {
+	@include clearfix;
+	header {
+		@include column(12);
+		background-color: darken($colour-medium-blue, 10%);
+		border-radius: 10px 10px 0 0;
+		p {
+			@include font-size(medium);
+			padding-left: 10px;
+			font-family: $font-sun7;
+			margin: 10px;
+		}
+	}
+	.reminders {
+		@include clearfix;
+		@include column(12);
+		padding: 30px 0;
+		border: 2px solid darken($colour-medium-blue, 10%);
+		> p {
+			@include column(11);
+			@include push(1);
+		}
+		.vehicle, .home, .personal {
+			@include column(3);
+			background-color: darken($colour-medium-blue, 10%);
+			position: relative;
+			margin-top: 20px;
+			padding: 10px;
+			height: 200px;
+		}
+		.vehicle {
+			@include push(1);
+			background {
+				image :	url("/images/panel_icon_sprite.png");
+				repeat: no-repeat;
+			}
+
+		}
+		button {
+			display: block;
+			background-color: white;
+			border: none;
+			width: 90%;
+			color: white;
+			@include font-size(medium);
+			font-family: $font-sun7;
+			background-image: linear-gradient(#31AE20, #006300);
+			padding: 10px 0;
+			position: absolute;
+			bottom: 0;
+		}
+	}
+}

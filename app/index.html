@@ -1,35 +1,59 @@
 <!doctype html>
-<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Remiders</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+</head>
+<body>
+  <h5>Ball numbers</h5>
+  <p id="ballNumbers">00 00 00 00 00<p>
+  <h5>Lucky stars</h5>
+  <p id="luckyStars">00 00</p>
+  <button onclick="Balls.drawNumbers()">Draw random</button>
+  <script>
+      var Balls = (function() {
 
-        <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+        function BallsPicker(type) {
+          this.type = type;
+          this.ballNumbers = {
+            range: 50,
+            digits: 4
+          };
+          this.luckyStars = {
+            range: 11,
+            digits: 2
+          };
+          this.range = type == 'balls' ? this.ballNumbers.range : this.luckyStars.range;
+          this.newNumbers = function() {
+            var numbers = [];
+            for(var i = 0; i < 4; i++) {
+              numbers.push(Math.floor((Math.random() * this.range) + 1).toString());
+            };
+            return numbers.join(" ");
+          }
+        };
 
-        <link href="stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
-        <script src="js/vendor/modernizr-2.8.0.min.js"></script>
-    </head>
-    <body>
-        <!--[if lt IE 8]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <header role="banner">
-            <div class="center">
-                <div class="full-width">
-                    <h1 class="h3">Joe's account</h1>
-                </div>
-            </div>
-        </header>
-        <main>
-            <article class="center">
-                <section>
-                    <h2>Typography</h2>
-            </article>
-        </main>
-    </body>
+        var ballNumbers = {
+          paragraph: document.getElementById("ballNumbers"),
+          numbers: new BallsPicker('balls')
+        };
+
+        var luckyStars = {
+          paragraph: document.getElementById("luckyStars"),
+          numbers: new BallsPicker('stars')
+        };
+
+
+        var drawNumbers = function() {
+            ballNumbers.paragraph.innerHTML = ballNumbers.numbers.newNumbers();
+            luckyStars.paragraph.innerHTML = luckyStars.numbers.newNumbers();
+        }
+
+        return {
+          drawNumbers: drawNumbers
+        };
+
+      })();
+  </script>
+</body>
 </html>
