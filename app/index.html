@@ -13,40 +13,33 @@
   <script>
       var Balls = (function() {
 
-        function BallsPicker(type) {
+        function BallsPicker(type, range, digits) {
           this.type = type;
-          this.ballNumbers = {
-            range: 50,
-            digits: 4
-          };
-          this.luckyStars = {
-            range: 11,
-            digits: 2
-          };
-          this.range = type == 'balls' ? this.ballNumbers.range : this.luckyStars.range;
+          this.range = range;
+          this.digits = digits;
+          this.elem = document.getElementById(type);
+
+          var nIntervId;
+
           this.newNumbers = function() {
             var numbers = [];
             for(var i = 0; i < 4; i++) {
-              numbers.push(Math.floor((Math.random() * this.range) + 1).toString());
+              numbers.push(Math.floor((Math.random() * 4) + 1));
             };
-            return numbers.join(" ");
+            document.getElementById("ballNumbers").innerHTML = numbers.join(" ");
+          };
+
+          this.shuffle = function() {
+            nIntervId = setInterval(this.newNumbers, 500);
           }
         };
 
-        var ballNumbers = {
-          paragraph: document.getElementById("ballNumbers"),
-          numbers: new BallsPicker('balls')
-        };
-
-        var luckyStars = {
-          paragraph: document.getElementById("luckyStars"),
-          numbers: new BallsPicker('stars')
-        };
-
+        var ballNumbers = new BallsPicker("ballNumbers", 50, 4);
+        var luckyStars = new BallsPicker("luckyStars", 11, 2);
 
         var drawNumbers = function() {
-            ballNumbers.paragraph.innerHTML = ballNumbers.numbers.newNumbers();
-            luckyStars.paragraph.innerHTML = luckyStars.numbers.newNumbers();
+          ballNumbers.shuffle();
+          //luckyStars.shuffle();
         }
 
         return {
