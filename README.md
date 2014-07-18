@@ -1,4 +1,4 @@
-calculator
+Sand box
 ==========
 
-JavaScript calculator
+A project for messing about from scratch!
