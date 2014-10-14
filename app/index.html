@@ -13,37 +13,48 @@
   <script>
       var Balls = (function() {
 
-        function BallsPicker(type, range, digits) {
-          this.type = type;
+        function BallsDraw(range, digits) {
+
           this.range = range;
           this.digits = digits;
-          this.elem = document.getElementById(type);
+          this.newBalls = [];
 
-          var nIntervId;
-
-          this.newNumbers = function() {
-            var numbers = [];
-            for(var i = 0; i < 4; i++) {
-              numbers.push(Math.floor((Math.random() * 4) + 1));
-            };
-            document.getElementById("ballNumbers").innerHTML = numbers.join(" ");
+          this.shuffle = function(o){
+            for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+            return o;
           };
 
-          this.shuffle = function() {
-            nIntervId = setInterval(this.newNumbers, 500);
+          this.newArray = function(arrayRange) {
+            var numbers = [];
+            for(var i = 0; i < arrayRange; i++) {
+              numbers.push(i + 1);
+            };
+            return numbers;
+          };
+
+          this.newNumbers = function() {
+            this.newBalls = this.newArray(this.range);
+            this.shuffle(this.newBalls);
+            return this.newBalls.slice(0, this.digits).join(" ");
           }
+
         };
 
-        var ballNumbers = new BallsPicker("ballNumbers", 50, 4);
-        var luckyStars = new BallsPicker("luckyStars", 11, 2);
+        var ballNumbers = {
+          paragraph: document.getElementById("ballNumbers"),
+          numbers: new BallsDraw(50, 4)
+        };
 
-        var drawNumbers = function() {
-          ballNumbers.shuffle();
-          //luckyStars.shuffle();
-        }
+        var luckyStars = {
+          paragraph: document.getElementById("luckyStars"),
+          numbers: new BallsDraw(11, 2)
+        };
 
         return {
-          drawNumbers: drawNumbers
+          drawNumbers: function() {
+              ballNumbers.paragraph.innerHTML = ballNumbers.numbers.newNumbers();
+              luckyStars.paragraph.innerHTML = luckyStars.numbers.newNumbers();
+          }
         };
 
       })();
