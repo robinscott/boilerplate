@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <link rel="shortcut icon" type="image/png" href="./bower_components/jasmine/lib/jasmine-core/jasmine_favicon.png">
+  <link rel="stylesheet" type="text/css" href="./bower_components/jasmine/lib/jasmine-core/jasmine.css">
+  <!-- Knockout -->
+  <script type="text/javascript" src="./bower_components/knockout/dist/knockout.js"></script>
+  <!-- Jasmine -->
+  <script type="text/javascript" src="./bower_components/jasmine/lib/jasmine-core/jasmine.js"></script>
+  <script type="text/javascript" src="./bower_components/jasmine/lib/jasmine-core/jasmine-html.js"></script>
+  <script type="text/javascript" src="./bower_components/jasmine/lib/jasmine-core/boot.js"></script>
+</head>
+<body>
+  <h5>Ball numbers</h5>
+  <p data-bind="foreach: ballNumbers">
+    <span data-bind="text: $data"></span>
+  <p>
+  <h5>Lucky stars</h5>
+  <p data-bind="foreach: luckyStars">
+    <span data-bind="text: $data"></span>
+  </p>
+  <button data-bind="click: updateNumbers">Draw random</button>
+  <script>
+    var lotteryPicker = lotteryPicker || {};
+
+    lotteryPicker.BallsDraw = function(range, digits) {
+
+      this.range = range;
+      this.digits = digits;
+      this.newBalls = [];
+
+      this.shuffle = function(o){
+        for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+        return o;
+      };
+
+      this.newArray = function(arrayRange) {
+        var numbers = [];
+        for(var i = 0; i < arrayRange; i++) {
+          numbers.push(i + 1);
+        };
+        return numbers;
+      };
+
+      this.newNumbers = function() {
+        this.newBalls = this.newArray(this.range);
+        this.shuffle(this.newBalls);
+        return this.newBalls.slice(0, this.digits);
+      };
+
+    };
+
+    lotteryPicker.lotteryPickerViewModel = function() {
+      
+      var self = this;
+
+      self.ballNumbers = ko.observableArray(["00", "00", "00", "00", "00"]);
+      self.luckyStars = ko.observableArray(["00", "00"]);
+      self.ballNumbersObj = new lotteryPicker.BallsDraw(50, 5);
+      self.luckyStarsObj = new lotteryPicker.BallsDraw(11, 2);
+
+      self.updateNumbers = function() {
+        self.ballNumbers(self.ballNumbersObj.newNumbers());
+        self.luckyStars(self.luckyStarsObj.newNumbers());
+      };
+
+    }
+
+    ko.applyBindings(new lotteryPicker.lotteryPickerViewModel());
+
+  </script>
+</body>
+</html>
