@@ -7,15 +7,15 @@ module.exports = function(grunt) {
         compass: {
             dist: {
                 options: {
-                    sassDir: 'app/sass',
-                    cssDir: 'app/stylesheets',
+                    sassDir: 'sass',
+                    cssDir: 'stylesheets',
                     outputStyle: 'expanded'
                 }
             }
         },
         watch: {
             all: {
-                files: ['app/sass/**/*.scss'],
+                files: ['sass/**/*.scss'],
                 tasks: ['compass'],
                 options: {
                     spawn: false
@@ -26,13 +26,13 @@ module.exports = function(grunt) {
             dev: {
                 bsFiles: {
                     src : [
-                        'app/stylesheets/*.css',
-                        'app/*.html'
+                        'stylesheets/*.css',
+                        '*.html'
                     ]
                 },
                 options: {
                     server: {
-                        baseDir: 'app'
+                        baseDir: './'
                     },
                     watchTask: true
                 }
