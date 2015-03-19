@@ -1,11 +1,7 @@
 
-// import toolkit
+// import Bootstrap
 @import
-"toolkit/modules/colours",
-"toolkit/toolkit";
+"../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
 
 // import project
-@import
-"reminders/reminders",
-"reminders/accounts",
-"reminders/edit";
+//@import
