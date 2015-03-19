@@ -48,6 +48,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-browser-sync');
 
     // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
-    grunt.registerTask('default', ['browserSync','watch']);
+    grunt.registerTask('default', ['compass', 'browserSync', 'watch']);
 
 };

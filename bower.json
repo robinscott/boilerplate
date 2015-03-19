@@ -1,0 +1,24 @@
+{
+  "name": "sand-box",
+  "version": "0.0.0",
+  "homepage": "https://github.com/robinscott/sand-box",
+  "authors": [
+    "Robin Scott <robinscott@btinternet.com>"
+  ],
+  "description": "Project to play in",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jasmine": "~2.1.2",
+    "knockout": "~3.2.0"
+  },
+  "devDependencies": {
+    "bootstrap-sass-official": "~3.3.4"
+  }
+}
