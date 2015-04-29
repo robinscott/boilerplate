@@ -10,16 +10,10 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "bower_components"
   ],
   "dependencies": {
-    "jasmine": "~2.1.2",
-    "knockout": "~3.2.0"
   },
   "devDependencies": {
-    "bootstrap-sass-official": "~3.3.4",
-    "angular-tree-control": "~0.2.9"
   }
 }
