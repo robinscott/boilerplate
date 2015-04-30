@@ -5,25 +5,62 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         watch: {
-            all: {
-                files: ['sass/**/*.scss'],
+            sass: {
+                files: ['app/sass/**/*.scss'],
+                tasks: ['sass', 'autoprefixer'],
                 options: {
                     spawn: false
                 }
             }
         },
+
+        autoprefixer: {
+            options: {
+                browsers: [
+                    'last 2 versions',
+                    'ie 8',
+                    'ie 9'
+                ]
+            },
+            dist: {
+                files: {
+                    'app/css/main.css': 'app/css/main.css'
+                }
+            }
+        },
+
+        sass: {
+            dist: {
+                files: [{
+                    cwd: 'app/sass/',
+                    dest: 'app/css/',
+                    expand: true,
+                    ext: '.css',
+                    src: ['*.scss']
+                }],
+                options: {
+                    loadPath: [
+                        //"app/bower_components/bootstrap-sass-official/assets/stylesheets/",
+                        //"app/bower_components/angular-ui-tree/source/"
+                    ],
+                    precision: 8,
+                    style: 'expanded'
+                }
+            }
+        },
+
         browserSync: {
-            dev: {
+            dist: {
                 bsFiles: {
                     src : [
-                        'stylesheets/*.css',
-                        'index.html',
-                        'dev/**/*.html'
+                        'app/css/**/*.css',
+                        'app/**/*.html',
+                        'app/**/*.htm'
                     ]
                 },
                 options: {
                     server: {
-                        baseDir: './'
+                        baseDir: 'app/'
                     },
                     watchTask: true
                 }
@@ -33,12 +70,13 @@ module.exports = function(grunt) {
     });
 
     // Load tasks
-    // grunt.loadNpmTasks('grunt-contrib-sass');
-    // grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-autoprefixer');
     // grunt.loadNpmTasks('grunt-contrib-concat');
-     grunt.loadNpmTasks('grunt-browser-sync');
+    grunt.loadNpmTasks('grunt-browser-sync');
 
     // Register tasks
-    grunt.registerTask('default', ['watch']);
+    grunt.registerTask('default', ['sass', 'autoprefixer', 'browserSync', 'watch']);
 
 };
