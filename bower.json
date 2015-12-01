@@ -1,0 +1,13 @@
+{
+  "name": "grunt-boilerplate",
+  "version": "0.0.0",
+  "homepage": "https://github.com/robinscott/grunt-boilerplate",
+  "authors": [
+    "Robin Scott <robinscott@btinternet.com>"
+  ],
+  "description": "A basic static website workflow using Grunt.",
+  "license": "MIT",
+  "devDependencies": {
+    "normalize-scss": "~3.0.3"
+  }
+}
