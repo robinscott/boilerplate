@@ -5,6 +5,7 @@
 *.swp
 *.out
 *.css
+*.map
 node_modules/
 bower_components/
 .idea/
