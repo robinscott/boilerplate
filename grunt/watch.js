@@ -1,6 +1,6 @@
 module.exports = {
     sass: {
-        files: ['app/sass/**/*.scss'],
+        files: ['<%= sassDir %>**/*.scss'],
         tasks: ['sass', 'autoprefixer'],
         options: {
             spawn: false

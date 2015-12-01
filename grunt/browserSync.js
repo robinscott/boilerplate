@@ -2,7 +2,7 @@ module.exports = {
     dist: {
         bsFiles: {
             src : [
-                'app/css/**/*.css',
+                '<%= cssDir %>**/*.css',
                 'app/**/*.html',
                 'app/**/*.htm'
             ]
