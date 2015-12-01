@@ -1,4 +1,4 @@
-Boilerplate
-==========
+## Grunt boilerplate
+=================
 
-A project for messing about from scratch!
+A basic static website workflow using Grunt.
